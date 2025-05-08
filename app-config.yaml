@@ -86,8 +86,13 @@ auth:
 
     github:
       development:
+<<<<<<< HEAD
         clientId: $env:GITHUB_OAUTH_CLIENT_ID
         clientSecret: $env:GITHUB_OAUTH_CLIENT_SECRET
+=======
+        clientId: Ov23liZ1N6VY4vZbC9y3
+        clientSecret: e34cd8924f53baebf728a6519c8b6f2fb760b73c
+>>>>>>> 29eb17c (Register component in Backstage)
         signIn:
           resolvers:
             - resolver: usernameMatchingUserEntityName
@@ -109,13 +114,22 @@ catalog:
     - type : file
       target : ../../examples/catalog-info.yaml
 
+    - type: file
+      target: ../../examples/weather-component.yaml     
+
+    - type: file
+      target: ../../examples/sensor-thing.yaml          
+
+    - type: file
+      target: ../../examples/sensor-thing-api.yaml   
+
     # Local example template
     - type: file
       target: ../../examples/template/template.yaml
       rules:
         - allow: [Template]
 
-    # Local example organizational data
+    # # Local example organizational data
     - type: file
       target: ../../examples/org.yaml
       rules:

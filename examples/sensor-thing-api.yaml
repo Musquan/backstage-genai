@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: sensor-things-api
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: team-iot
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: SensorThings API
+      version: 1.0.0
+    paths: {}
