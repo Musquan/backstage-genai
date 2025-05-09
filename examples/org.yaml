@@ -3,16 +3,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
-<<<<<<< HEAD
-  name: shashankdatt08
-=======
   name: Musquan
->>>>>>> 29eb17c (Register component in Backstage)
 spec:
   memberOf: [guests, team-weather, team-iot]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
-<<<<<<< HEAD
 # apiVersion: backstage.io/v1alpha1
 # kind: Group
 # metadata:
@@ -20,7 +15,7 @@ spec:
 # spec:
 #   type: team
 #   children: []
-=======
+
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
@@ -51,4 +46,4 @@ metadata:
   name: weather-system
 spec:
   owner: team-weather 
->>>>>>> 29eb17c (Register component in Backstage)
+
