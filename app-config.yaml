@@ -19,6 +19,11 @@ backend:
     # host: 127.0.0.1
   csp:
     connect-src: ["'self'", 'http:', 'https:']
+    img-src:
+      # "'self'" and 'data' are from the backstage default but must be set since img-src is overriden
+      - "'self'"
+      - 'data:'
+      - '"https://rsowmya1908.atlassian.net/rest/api/3"'
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   cors:
@@ -44,12 +49,12 @@ integrations:
     #   token: ${GHE_TOKEN}
 
 proxy:
-  ### Example for how to add a proxy endpoint for the frontend.
-  ### A typical reason to do this is to handle HTTPS and CORS for internal services.
-  # endpoints:
-  #   '/test':
-  #     target: 'https://example.com'
-  #     changeOrigin: true
+  '/jira/api':
+    target: 'https://rsowmya1908.atlassian.net/rest/api/3'
+    headers:
+      Authorization: $env:JIRA_AUTH
+      Accept: 'application/json'
+      Content-Type: 'application/json'
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -70,8 +75,8 @@ auth:
     guest: {}
     github:
       development:
-        clientId: YOUR_CLIENT_ID
-        clientSecret: YOUR_CLIENT_SECRET
+        clientId: $env:GITHUB_OAUTH_CLIENT_ID
+        clientSecret: $env:GITHUB_OAUTH_CLIENT_SECRET
         signIn:
           resolvers:
             # Matches the GitHub username with the Backstage user entity name.
@@ -91,6 +96,9 @@ catalog:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
       target: ../../examples/entities.yaml
+    
+    - type : file
+      target : ../../examples/catalog-info.yaml
 
     # Local example template
     - type: file
@@ -124,3 +132,18 @@ kubernetes:
 permission:
   # setting this to `false` will disable permissions
   enabled: true
+
+
+jiraDashboard:
+  annotationPrefix: jira
+  token: $env:JIRA_DASHBOARD_TOKEN
+  baseUrl: https://rsowmya1908.atlassian.net/rest/api/3
+  defaultFilters:
+    - name: 'BackstageJQL'
+      shortName: 'Unresolved Issues'
+      query: 'assignee = currentUser() AND resolution = Unresolved ORDER BY priority DESC, updated DESC'
+
+
+ 
+
+

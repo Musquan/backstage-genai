@@ -50,5 +50,11 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.4.1",
+  "dependencies": {
+    "@axis-backstage/plugin-jira-dashboard": "^1.19.0",
+    "@axis-backstage/plugin-jira-dashboard-common": "^1.11.0",
+    "@backstage/plugin-home": "^0.8.7",
+    "dotenv": "^16.5.0"
+  }
 }
