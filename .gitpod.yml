@@ -1,0 +1,32 @@
+# Image to use for the workspace
+image: gitpod/workspace-node
+
+# Ports to expose
+ports:
+  - port: 3000
+    name: frontend
+    onOpen: open-preview
+  - port: 7007
+    name: backend
+    onOpen: ignore
+
+# Tasks to run on workspace start
+tasks:
+  - name: Install, set up and start Backstage
+    init: |
+      git config --global user.name "ravalivudutha96"
+      git config --global user.email "ravalivudutha96@gmail.com"
+      yarn install
+    command: |
+      yarn dev
+
+# VS Code extensions to install
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
+    - GitLens.gitlens
+    - redhat.java 
+    - ms-python.python 
+    - cucumber.cucumber-automation 
+    - joffrey-bion.cucumber-extension 
