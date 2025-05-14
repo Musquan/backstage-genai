@@ -96,6 +96,9 @@ catalog:
     - type: file
       target: ../../examples/entities.yaml
 
+    - type: file
+      target: ../../myComponents/bs.yaml
+
     # Local example template
     - type: file
       target: ../../examples/template/template.yaml
