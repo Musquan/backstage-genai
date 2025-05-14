@@ -70,8 +70,8 @@ auth:
     guest: {}
     github:
       development:
-        clientId: YOUR_CLIENT_ID
-        clientSecret: YOUR_CLIENT_SECRET
+        clientId: Ov23libHSk4BXT1dPUXa
+        clientSecret: 9fca1f68a8132a1d17a44a5a0fc25351c70052f2
         signIn:
           resolvers:
             # Matches the GitHub username with the Backstage user entity name.
@@ -87,6 +87,10 @@ catalog:
     pullRequestBranchName: backstage-integration
   rules:
     - allow: [Component, System, API, Resource, Location]
+  # database:
+  #   client: sqlite3
+  #   connection:
+  #     entityFilename: ./catalog.sqlite
   locations:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
@@ -103,6 +107,9 @@ catalog:
       target: ../../examples/org.yaml
       rules:
         - allow: [User, Group]
+
+    - type: url
+      target: https://github.com/ravalivudutha96/latestbsdemo/blob/main/catalog-info.yaml
 
     ## Uncomment these lines to add more example data
     # - type: url
