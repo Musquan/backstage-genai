@@ -1,9 +1,8 @@
-#examples/catalog-info.yaml
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: jira-application
-  description: An example of a Backstage application.
+  description: Backstage Jira DashBoard
   annotations:
     jira.com/project-key: BAC
     jira.com/component: jira-application

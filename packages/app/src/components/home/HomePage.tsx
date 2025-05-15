@@ -5,7 +5,7 @@ export const HomePage = () => (
   <Grid container spacing={3}>
     <Grid item xs={12} md={6}>
       <JiraUserIssuesViewCard
-        filterName="BackstageFilter"
+        filterName="BackstageJQL"
         bottomLinkProps={{
           link: 'https://rsowmya1908.atlassian.net/issues',
           title: 'Open in Jira',

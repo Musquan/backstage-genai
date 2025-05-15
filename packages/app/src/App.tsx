@@ -1,3 +1,4 @@
+//components/App.tsx
 import { Navigate, Route } from 'react-router-dom';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
@@ -37,7 +38,7 @@ import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
-
+import { localSamlAuthApiRef } from './apis';
 const app = createApp({
   apis,
   bindRoutes({ bind }) {
@@ -58,14 +59,26 @@ const app = createApp({
     });
   },
   components: {
-    SignInPage: props => (<SignInPage
-      {...props}
-      auto
-      provider={{
-        id: 'github-auth-provider',
-        title: 'GitHub',
-        message: 'Sign in using GitHub',
-        apiRef: githubAuthApiRef,}} />
+    SignInPage: props => (
+      <SignInPage
+        {...props}
+        title="Welcome to Backstage!"
+        align="center"
+        providers={[
+          {
+            id: 'saml',
+            title: 'SAML',
+            message: 'Sign in using SAML',
+            apiRef: localSamlAuthApiRef,
+          },
+          {
+            id: 'github-auth-provider',
+            title: 'GitHub',
+            message: 'Use GitHub account',
+            apiRef: githubAuthApiRef,
+          },
+        ]}
+      />
     ),
   },
 });

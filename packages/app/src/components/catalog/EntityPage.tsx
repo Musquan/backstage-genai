@@ -1,6 +1,4 @@
-// packages/app/src/components/catalog/EntityPage.tsx
 
-import React from 'react';
 import { Button, Grid } from '@material-ui/core';
 import {
   EntityJiraDashboardContent,
@@ -30,7 +28,6 @@ import {
   EntitySwitch,
   EntityOrphanWarning,
   EntityProcessingErrorsPanel,
-  isComponentType,
   isKind,
   hasCatalogProcessingErrors,
   isOrphan,
@@ -48,20 +45,9 @@ import {
 import { EntityTechdocsContent } from '@backstage/plugin-techdocs';
 import { EmptyState } from '@backstage/core-components';
 import {
-  Direction,
   EntityCatalogGraphCard,
 } from '@backstage/plugin-catalog-graph';
 
-import {
-  RELATION_API_CONSUMED_BY,
-  RELATION_API_PROVIDED_BY,
-  RELATION_CONSUMES_API,
-  RELATION_DEPENDENCY_OF,
-  RELATION_DEPENDS_ON,
-  RELATION_HAS_PART,
-  RELATION_PART_OF,
-  RELATION_PROVIDES_API,
-} from '@backstage/catalog-model';
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
@@ -197,7 +183,7 @@ const serviceEntityPage = (
   </EntityLayout>
 );
 
-const websiteEntityPage = serviceEntityPage;
+//const websiteEntityPage = serviceEntityPage;
 
 const defaultEntityPage = (
   <EntityLayout>
