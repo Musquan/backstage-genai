@@ -34,6 +34,16 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
+    - title: GitHub Info
+      properties:
+        repoOwner:
+          type: string
+        repoName:
+          type: string
+        jiraId:
+          type: string
+        githubToken:
+          type: string
 
   # These steps are executed in the scaffolder backend, using data that we gathered
   # via the parameters above.
@@ -66,6 +76,7 @@ spec:
       input:
         repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
+        
 
   # Outputs are displayed to the user after a successful execution of the template.
   output:

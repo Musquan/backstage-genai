@@ -3,11 +3,18 @@ kind: Component
 metadata:
   name: backstage-genai
   description: An example of a Backstage application.
+  annotations:
+    gitpod.io/host: gitpod.io
+    github.com/project-slug: ravalivudutha96/latestbsdemo
+  links:
+    - url: https://gitpod.io/new/#https://github.com/ravalivudutha96/latestbsdemo
+      title: Open In Gitpod
+      icon: dashboard
   # Example for optional annotations
   # annotations:
   #   github.com/project-slug: backstage/backstage
   #   backstage.io/techdocs-ref: dir:.
 spec:
   type: website
-  owner: john@example.com
+  owner: guests
   lifecycle: experimental

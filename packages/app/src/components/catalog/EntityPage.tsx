@@ -1,4 +1,5 @@
 import { Button, Grid } from '@material-ui/core';
+import { GitpodButton } from '@gitpod/backstage-plugin-gitpod';
 import {
   EntityApiDefinitionCard,
   EntityConsumedApisCard,
@@ -130,6 +131,9 @@ const overviewContent = (
     <Grid item md={6}>
       <EntityAboutCard variant="gridItem" />
     </Grid>
+    <Grid item md={3} xs={6}>
+		  <GitpodButton />
+	  </Grid>
     <Grid item md={6} xs={12}>
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
