@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: calculator-app
+  description: A simple calculator project
+  annotations:
+    github.com/project-slug: ravalivudutha96/CalculatorApp
+spec:
+  type: tool
+  lifecycle: experimental
+  owner: guests

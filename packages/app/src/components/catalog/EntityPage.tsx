@@ -1,5 +1,6 @@
 
 import { Button, Grid } from '@material-ui/core';
+import { GitpodButton } from '@gitpod/backstage-plugin-gitpod';
 import {
   EntityJiraDashboardContent,
   isJiraDashboardAvailable,
@@ -112,39 +113,27 @@ const entityWarningContent = (
   </>
 );
 
-const OverviewContent = () => {
-  const { entity } = useEntity();
-
-  return (
-    <Grid container spacing={3} alignItems="stretch">
-      {entityWarningContent}
-      <Grid item md={6}>
-        <EntityAboutCard variant="gridItem" />
-      </Grid>
-      <Grid item md={6} xs={12}>
-        <EntityCatalogGraphCard variant="gridItem" height={400} />
-      </Grid>
-      <Grid item md={6} xs={12}>
-        <EntityLinksCard />
-      </Grid>
-      <Grid item md={6} xs={12}>
-        {isJiraDashboardAvailable(entity) ? (
-          <EntityJiraDashboardContent />
-        ) : (
-          <EmptyState
-            title="No Jira Dashboard"
-            description="Jira integration is not configured for this entity."
-            missing="info"
-          />
-        )}
-      </Grid>
-      <Grid item md={12} xs={12}>
-        <EntityHasSubcomponentsCard variant="gridItem" />
-      </Grid>
-    </Grid>
-  );
-};
-
+const OverviewContent = () => (
+<Grid container spacing={3} alignItems="stretch">
+    {entityWarningContent}
+<Grid item md={6}>
+<EntityAboutCard variant="gridItem" />
+</Grid>
+<Grid item md={3} xs={6}>
+<GitpodButton />
+</Grid>
+<Grid item md={6} xs={12}>
+<EntityCatalogGraphCard variant="gridItem" height={400} />
+</Grid>
+ 
+    <Grid item md={4} xs={12}>
+<EntityLinksCard />
+</Grid>
+<Grid item md={8} xs={12}>
+<EntityHasSubcomponentsCard variant="gridItem" />
+</Grid>
+</Grid>
+);
 
 const serviceEntityPage = (
   <EntityLayout>
@@ -183,7 +172,6 @@ const serviceEntityPage = (
   </EntityLayout>
 );
 
-//const websiteEntityPage = serviceEntityPage;
 
 const defaultEntityPage = (
   <EntityLayout>
