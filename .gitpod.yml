@@ -1,0 +1,27 @@
+# Image with Node.js pre-installed
+image: gitpod/workspace-node
+ 
+# Ports to expose
+ports:
+  - port: 3000
+    name: Frontend
+    description: Backstage frontend
+    onOpen: open-preview
+  - port: 7007
+    name: Backend
+    description: Backstage backend
+ 
+# Tasks to run on workspace start
+tasks:
+  - name: Install dependencies & start app
+    init: |
+      yarn install
+    command: |
+      yarn dev
+ 
+# VS Code extensions that are helpful for Backstage development
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
+    - ms-vscode.vscode-typescript-next

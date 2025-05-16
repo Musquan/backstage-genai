@@ -39,6 +39,10 @@ backend:
   
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
+  reading:
+    allow:
+      - host: raw.githubusercontent.com
+
 integrations:
   github:
     - host: github.com
@@ -109,13 +113,21 @@ catalog:
     - type : file
       target : ../../examples/catalog-info.yaml
 
+    # - type: file
+    #   target: ../../catalog/weather-component.yaml     
+    - type: file
+      target: ../../catalog/locations.yaml
+
+    - type: file
+      target: ../../catalog/calculator.yaml
+
     # Local example template
     - type: file
       target: ../../examples/template/template.yaml
       rules:
         - allow: [Template]
 
-    # Local example organizational data
+    # # Local example organizational data
     - type: file
       target: ../../examples/org.yaml
       rules:
