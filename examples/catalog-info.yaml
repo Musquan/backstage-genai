@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: jira-application
+  description: Backstage Jira DashBoard
+  annotations:
+    jira.com/project-key: BAC
+    jira.com/component: jira-application
+    backstage.io/source-location: url:https://github.com/ShashankDatt08/backstage-genai
+    github.com/project-slug: ShashankDatt08/backstage-genai
+    gitpod.io/workspace-url: https://gitpod.io/#https://github.com/ShashankDatt08/backstage-genai
+  links:
+    - url: https://rsowmya1908.atlassian.net/jira/software/projects/BAC/boards/34
+      title: Jira DashBoard
+      icon: dashboard
+spec:
+  type: website
+  owner: shashankdatt08@gmail.com
+  lifecycle: experimental
+

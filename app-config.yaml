@@ -6,12 +6,13 @@ organization:
   name: My Company
 
 backend:
+  log:
+    level: debug
+
   # Used for enabling authentication, secret is shared by all backend plugins
   # See https://backstage.io/docs/auth/service-to-service-auth for
   # information on the format
-  # auth:
-  #   keys:
-  #     - secret: ${BACKEND_SECRET}
+
   baseUrl: http://localhost:7007
   listen:
     port: 7007
@@ -19,6 +20,11 @@ backend:
     # host: 127.0.0.1
   csp:
     connect-src: ["'self'", 'http:', 'https:']
+    img-src:
+      # "'self'" and 'data' are from the backstage default but must be set since img-src is overriden
+      - "'self'"
+      - 'data:'
+      - '"https://rsowmya1908.atlassian.net/rest/api/3"'
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   cors:
@@ -30,6 +36,7 @@ backend:
   database:
     client: better-sqlite3
     connection: ':memory:'
+  
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
 integrations:
@@ -41,15 +48,17 @@ integrations:
     ### Example for how to add your GitHub Enterprise instance using the API:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
-    #   token: ${GHE_TOKEN}
+    #   token: $env:GHE_TOKEN
 
 proxy:
-  ### Example for how to add a proxy endpoint for the frontend.
-  ### A typical reason to do this is to handle HTTPS and CORS for internal services.
-  # endpoints:
-  #   '/test':
-  #     target: 'https://example.com'
-  #     changeOrigin: true
+  '/jira-dashboard':
+    target: https://rsowmya1908.atlassian.net
+    changeOrigin: true
+    pathRewrite:
+      '^/jira-dashboard': '/rest/api/3'
+    headers:
+      Authorization: $env:JIRA_AUTH
+      Accept: application/json
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -63,19 +72,24 @@ techdocs:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
   environment: development
   providers:
-    # See https://backstage.io/docs/auth/guest/provider
-    guest: {}
+    saml:
+      metadataUrl: http://localhost:8080/realms/backstage-realm/protocol/saml/descriptor
+      entryPoint: http://localhost:8080/realms/backstage-realm/protocol/saml
+      issuer: http://localhost:7007/api/auth/saml/metadata
+      audience: http://localhost:7007/api/auth/saml/metadata
+      callbackUrl: http://localhost:7007/api/auth/saml/handler/frame
+      cert:
+        $file: ./packages/saml.crt
+      signatureAlgorithm: sha256
+
     github:
       development:
-        clientId: YOUR_CLIENT_ID
-        clientSecret: YOUR_CLIENT_SECRET
+        clientId: $env:GITHUB_OAUTH_CLIENT_ID
+        clientSecret: $env:GITHUB_OAUTH_CLIENT_SECRET
         signIn:
           resolvers:
-            # Matches the GitHub username with the Backstage user entity name.
-            # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers.
             - resolver: usernameMatchingUserEntityName
 
 scaffolder:
@@ -91,6 +105,9 @@ catalog:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
       target: ../../examples/entities.yaml
+    
+    - type : file
+      target : ../../examples/catalog-info.yaml
 
     # Local example template
     - type: file
@@ -124,3 +141,18 @@ kubernetes:
 permission:
   # setting this to `false` will disable permissions
   enabled: true
+
+jiraDashboard:
+  baseUrl: https://rsowmya1908.atlassian.net/
+  token: $env:JIRA_DASHBOARD_TOKEN
+  apiVersion: 3
+  proxyPath: /jira-dashboard
+  userEmailSuffix: '@gmail.com'
+  annotationPrefix: jira.com
+  defaultFilters:
+    - name: BackstageJQL
+      shortName: Unresolved Issues
+      query: >
+        assignee = currentUser()
+        AND resolution = Unresolved
+        ORDER BY priority DESC, updated DESC
