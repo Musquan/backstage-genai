@@ -1,16 +1,16 @@
-apiVersion: backstage.io/v1alpha1
-kind: Location
-metadata:
-  name: component1
-spec:
-  type: url
-  target: https://raw.githubusercontent.com/Musquan/backstage-catalog/main/weather-component.yaml
----  
-apiVersion: backstage.io/v1alpha1
-kind: Location
-metadata:
-  name: component2
-spec:
-  type: url
-  target: https://raw.githubusercontent.com/Musquan/backstage-catalog/main/catalog-info.yaml
+# apiVersion: backstage.io/v1alpha1
+# kind: Location
+# metadata:
+#   name: component1
+# spec:
+#   type: url
+#   target: https://raw.githubusercontent.com/Musquan/backstage-catalog/main/weather-component.yaml
+# ---  
+# apiVersion: backstage.io/v1alpha1
+# kind: Location
+# metadata:
+#   name: component2
+# spec:
+#   type: url
+#   target: https://raw.githubusercontent.com/Musquan/backstage-catalog/main/catalog-info.yaml
 

@@ -29,7 +29,6 @@ async function main() {
   backend.add(import('@backstage/plugin-search-backend-module-pg'));
   backend.add(import('@backstage/plugin-search-backend-module-catalog'));
   backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
-  backend.add(import('@axis-backstage/plugin-jira-dashboard-backend'));
   backend.add(import('@backstage/plugin-kubernetes-backend'));
 
   await backend.start();
