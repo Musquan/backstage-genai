@@ -53,16 +53,22 @@ integrations:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
     #   token: $env:GHE_TOKEN
+gitpod:
+  baseUrl: https://gitpod.io
+
+jira:
+  proxyPath: /jira/api
+  apiVersion: 3
 
 proxy:
-  '/jira-dashboard':
-    target: https://rsowmya1908.atlassian.net
-    changeOrigin: true
-    pathRewrite:
-      '^/jira-dashboard': '/rest/api/3'
+  '/jira/api':
+    target: https://backstage-automation.atlassian.net
     headers:
-      Authorization: $env:JIRA_AUTH
-      Accept: application/json
+      Authorization: 'Basic c2hhc2hhbmtkYXR0MDQ2QGdtYWlsLmNvbTpBVEFUVDN4RmZHRjA2VWo2b3lILUcyWWpxdXFjeUt0Yk9OdGRWclBrVE5MT1Nlbm1nRUhkNjR1dUtOb0MwNGpvNFJxWkZJTmxKRGRKRkl4RkZzQUJPemRfcl8zSThWdFpPV2JiSDRkZUE2WnI3YkVaNGpkV1NNTExEV2NCbjZTWVhWclVTbG9taV90WUsyZXItUFRwc3Y2QnJmcGZ0Mk1zS214YWxHVFZhalBKVFZkVzZoV2NjRmM9MDg0NDZBOUI='
+      Accept: 'application/json'
+      Content-Type: 'application/json'
+      X-Atlassian-Token: 'no-check'
+      User-Agent: 'BackstageJiraPlugin'
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -115,8 +121,8 @@ catalog:
 
     # - type: file
     #   target: ../../catalog/weather-component.yaml     
-    - type: file
-      target: ../../catalog/locations.yaml
+    # - type: file
+    #   target: ../../catalog/locations.yaml
 
     - type: file
       target: ../../catalog/calculator.yaml
@@ -154,17 +160,17 @@ permission:
   # setting this to `false` will disable permissions
   enabled: true
 
-jiraDashboard:
-  baseUrl: https://rsowmya1908.atlassian.net/
-  token: $env:JIRA_DASHBOARD_TOKEN
-  apiVersion: 3
-  proxyPath: /jira-dashboard
-  userEmailSuffix: '@gmail.com'
-  annotationPrefix: jira.com
-  defaultFilters:
-    - name: BackstageJQL
-      shortName: Unresolved Issues
-      query: >
-        assignee = currentUser()
-        AND resolution = Unresolved
-        ORDER BY priority DESC, updated DESC
+# jiraDashboard:
+#   baseUrl: https://rsowmya1908.atlassian.net/
+#   token: $env:JIRA_DASHBOARD_TOKEN
+#   apiVersion: 3
+#   proxyPath: /jira-dashboard
+#   userEmailSuffix: '@gmail.com'
+#   annotationPrefix: jira.com
+#   defaultFilters:
+#     - name: BackstageJQL
+#       shortName: Unresolved Issues
+#       query: >
+#         assignee = currentUser()
+#         AND resolution = Unresolved
+#         ORDER BY priority DESC, updated DESC

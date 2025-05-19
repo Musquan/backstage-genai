@@ -21,10 +21,6 @@ import {
   ScmAuth,
 } from '@backstage/integration-react';
 
-import {
-  jiraDashboardApiRef,
-  JiraDashboardClient,
-} from '@axis-backstage/plugin-jira-dashboard';
 
 
 export const apis: AnyApiFactory[] = [
@@ -44,12 +40,6 @@ export const apis: AnyApiFactory[] = [
     factory: ({ configApi }) => ScmIntegrationsApi.fromConfig(configApi),
   }),
 
-  createApiFactory({
-    api: jiraDashboardApiRef,
-    deps: { discoveryApi: discoveryApiRef, fetchApi: fetchApiRef },
-    factory: ({ discoveryApi, fetchApi }) =>
-      new JiraDashboardClient({ discoveryApi, fetchApi }),
-  }),
 
   ScmAuth.createDefaultApiFactory(),
 ];
