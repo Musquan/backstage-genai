@@ -21,6 +21,7 @@ import {
   ScmAuth,
 } from '@backstage/integration-react';
 
+import { JiraAPI, jiraApiRef } from '@roadiehq/backstage-plugin-jira';
 
 
 export const apis: AnyApiFactory[] = [
@@ -38,6 +39,13 @@ export const apis: AnyApiFactory[] = [
     api: scmIntegrationsApiRef,
     deps: { configApi: configApiRef },
     factory: ({ configApi }) => ScmIntegrationsApi.fromConfig(configApi),
+  }),
+
+   createApiFactory({
+    api: jiraApiRef,
+    deps: { discoveryApi: discoveryApiRef, configApi: configApiRef, fetchApi: fetchApiRef },
+    factory: ({ discoveryApi, configApi, fetchApi }) =>
+      new JiraAPI({ discoveryApi, configApi, fetchApi }),
   }),
 
 
