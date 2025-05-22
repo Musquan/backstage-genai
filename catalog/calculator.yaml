@@ -5,6 +5,9 @@ metadata:
   description: A simple calculator project
   annotations:
     github.com/project-slug: ravalivudutha96/CalculatorApp
+    jira/project-key: 'SCRUM'
+    jira/label: backstage-component:calculator-app
+
 spec:
   type: tool
   lifecycle: experimental
