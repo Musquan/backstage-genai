@@ -33,18 +33,18 @@ export const MyJiraPage = () => (
       <ContentHeader title="My Jira" />
 
       <EntityProvider entity={jiraEntity}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+        <Grid container spacing={3} >
+          <Grid item xs={12} >
             <CustomJiraQueryCard
-              title="My Open Tickets"
-              jqlQuery="assignee = currentUser() AND resolution = Unresolved ORDER BY priority DESC"
+              title="Open Tickets"
+              jqlQuery="project = SCRUM AND resolution = Unresolved ORDER BY priority DESC"
               maxResults={10}
             />
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} >
             <CustomJiraQueryCard
-              title="High‑Priority Bugs"
+              title="Open Bugs"
               jqlQuery='project = SCRUM AND issuetype = "Bug" '
               maxResults={10}
             />
