@@ -25,8 +25,7 @@ import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
 import { Root } from './components/Root';
-//import { HomePage } from './components/home/HomePage';
- import { MyJiraPage } from './components/home/MyJira';
+import { MyJiraPage } from './components/home/MyJira';
 
 import {
   AlertDisplay,
