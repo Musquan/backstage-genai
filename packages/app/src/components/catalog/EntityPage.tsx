@@ -54,7 +54,9 @@ import {
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 import {
+  EntityJiraActivityStreamCard,
   EntityJiraOverviewCard,
+  EntityJiraQueryCard,
   isJiraAvailable,
 } from '@roadiehq/backstage-plugin-jira';
 import {
@@ -254,6 +256,27 @@ const defaultEntityPage = (
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
+
+    <EntityLayout.Route
+          if={isJiraAvailable}
+          path="/jira-issues"
+          title="Jira Issues"
+        >
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <EntityJiraOverviewCard />
+            </Grid>
+            <Grid item xs={12}>
+              <EntityJiraQueryCard
+                title="Calculator‑App Issues"
+                hideOnMissingAnnotation={false}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <EntityJiraActivityStreamCard />
+            </Grid>
+          </Grid>
+        </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
