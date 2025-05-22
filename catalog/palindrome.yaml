@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Palindrome
+  description: An example of a palindrome application.
+  annotations:
+    # gitpod.io/host: gitpod.io
+    github.com/project-slug: ravalivudutha96/testComponent
+
+spec:
+  type: website
+  owner: guests
+  lifecycle: experimental

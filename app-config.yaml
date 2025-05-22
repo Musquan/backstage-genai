@@ -127,6 +127,12 @@ catalog:
     - type: file
       target: ../../catalog/calculator.yaml
 
+    - type: file
+      target: ../../catalog/palindrome.yaml
+
+    - type: file
+      target: ../../catalog/ms.yaml
+
     # Local example template
     - type: file
       target: ../../examples/template/template.yaml
