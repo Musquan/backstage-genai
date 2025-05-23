@@ -69,6 +69,10 @@ Prerequisites:
       Your certificate here
       -----END CERTIFICATE-----
       ```
-### To know more about backstage: 
-### [Backstage](https://backstage.io)
+  ## 5. Login Backstage app
+   Enter your details now in the backstage app and you are now all set to use the backstage app.
+  
+  
+##### For clear instructions on how to set up backstage, please follow the below link: 
+##### [Backstage](https://backstage.io)
 
