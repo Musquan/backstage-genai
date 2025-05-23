@@ -9,5 +9,5 @@ metadata:
 
 spec:
   type: website
-  owner: guests
+  owner: ICS
   lifecycle: experimental
